@@ -29,8 +29,13 @@ jobs:
     - name: Build APK
       run: ./gradlew assembleRelease
 
+    # 查找生成的 APK 文件的位置
+    - name: Find APK
+      run: find . -name "*.apk"
+
+    # 假设找到的 APK 在 app/build/outputs/apk/release/ 路径中，调整路径以匹配实际情况
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: app-release.apk
-        path: app/build/outputs/apk/release/app-release.apk
+        path: app/build/outputs/apk/release/app-release.apk  # 如果 find 命令显示不同路径，更新此路径
